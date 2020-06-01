@@ -6,6 +6,32 @@ import requests
 from bs4 import BeautifulSoup
 from logging import getLogger
 
+
+
+
+
+# Power generation companies
+
+#     Korea Hydro & Nuclear Power (KHNP): operates 21 nuclear power plants and 27 hydropower plants in Korea which account for 18,265 MW in total capacity (as of Dec. 2010).
+#     Korea South-East Power (KOEN / KOSEP): with 8,976 MW in total capacity (as of Dec. 2010), KOSEP operates the Samcheonpo Thermal Power Site Division and the Yeongheung Thermal Power Plant.
+# KR_KOSEP.PY 
+# # No API? but a POST form on the website to scrape 
+#     Korea Midland Power (KOMIPO): operates the Boryeong Thermalelectric Power Plant Site Division and the Yeongheung Thermal Power Plant, and possesses 9,399 MW in total installed capacity (as of Dec. 2010).
+# KR_KOMIPO.PY
+# # API working but need to get up-to-date list of plants
+#     Korea Western Power: operates the Taean Thermal Power Plant and manages a total installed capacity of 9,604 MW via 8 soft coal-fired units, 24 LNG combined cycle units, 4 oil-fired units and 4 pumped storage power plant units.
+# KR_KWP.PY
+# # Need to find and test the right APIs
+#     Korea Southern Power (KOSPO): operates the Hadong Thermal Power Site Division and manages 9,638 MW in total installed capacity as of Dec. 2010.
+# KR_KOSPO.PY
+# # API not working (returns 200 OK but blank)
+#     Korea East-West Power: operates the Dangjin and Honam Coal Fired Power Plants, and manages a total of 9,510 MW in installed capacity as of Dec. 2010.
+# KR_EWP.PY
+
+
+
+
+
 LOAD_URL = 'http://kpx.or.kr/eng/index.do'
 
 HYDRO_URL = 'http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
