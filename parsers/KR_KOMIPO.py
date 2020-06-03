@@ -13,6 +13,7 @@ import pandas as pd
 import numpy as np
 
 import xml.etree.ElementTree as ET
+import json
 
 from KR_DataAPIKey import idKey
 
@@ -44,6 +45,30 @@ from KR_DataAPIKey import idKey
 # "Bituminous coal" / "Anthracite" / "Total" / "Oil" / "LNG" / "Solid Fuel" / "Wood Pellets"
 
 # KOMIPO list of power plants, names, ids and units
+
+KomipoPowerPlantsAndUnitsV1 = [
+	{"powerPlantCode" : "8414", "powerPlantName" : "서울화력", "powerPlantUnits" : [{"HOGI_CD" : "004", "HOGI_NM" : "4호기"}, {"HOGI_CD" : "005", "HOGI_NM" : "5호기"}]}, 
+	{"powerPlantCode" : "8421", "powerPlantName" : "인천기력", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "8561", "powerPlantName" : "제주기력", "powerPlantUnits" : [{"HOGI_CD" : "002", "HOGI_NM" : "2호기"}, {"HOGI_CD" : "003", "HOGI_NM" : "3호기"}]}, 
+	{"powerPlantCode" : "8571", "powerPlantName" : "서천화력", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "8573", "powerPlantName" : "서천태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "8575", "powerPlantName" : "여수엑스포태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}]}, 
+	{"powerPlantCode" : "85A1", "powerPlantName" : "보령기력", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}, {"HOGI_CD" : "003", "HOGI_NM" : "3호기"}, {"HOGI_CD" : "004", "HOGI_NM" : "4호기"}, {"HOGI_CD" : "005", "HOGI_NM" : "5호기"}, {"HOGI_CD" : "006", "HOGI_NM" : "6호기"}, {"HOGI_CD" : "007", "HOGI_NM" : "7호기"}, {"HOGI_CD" : "008", "HOGI_NM" : "8호기"}  ]}, 
+	{"powerPlantCode" : "85D1", "powerPlantName" : "보령소수력", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "850", "powerPlantName" : "보령태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "85F1", "powerPlantName" : "보령연료전지", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}]}, 
+	{"powerPlantCode" : "8691", "powerPlantName" : "보령복합", "powerPlantUnits" : [{"HOGI_CD" : "CG1", "HOGI_NM" :  "CG1"}, {"HOGI_CD" : "CG2", "HOGI_NM" :  "CG2"}, {"HOGI_CD" : "CS1", "HOGI_NM" :  "CS1"}, {"HOGI_CD" : "CG3", "HOGI_NM" :  "CG3"}, {"HOGI_CD" : "CG4", "HOGI_NM" :  "CG4"}, {"HOGI_CD" : "CS2", "HOGI_NM" :  "CS2"}, {"HOGI_CD" : "CG5", "HOGI_NM" :  "CG5"}, {"HOGI_CD" : "CG6", "HOGI_NM" :  "CG6"}, {"HOGI_CD" : "CS3", "HOGI_NM" :  "CS3"}]}, 
+	{"powerPlantCode" : "8801", "powerPlantName" : "인천복합", "powerPlantUnits" : [{"HOGI_CD" : "CG1", "HOGI_NM" :  "CG1"}, {"HOGI_CD" : "CG2", "HOGI_NM" :  "CG2"}, {"HOGI_CD" : "CG3", "HOGI_NM" :  "CG3"}, {"HOGI_CD" : "CG4", "HOGI_NM" :  "CG4"}, {"HOGI_CD" : "CS1", "HOGI_NM" :  "CS1"}, {"HOGI_CD" : "CS2", "HOGI_NM" :  "CS2"}, {"HOGI_CD" : "CG5", "HOGI_NM" :  "CG5"}, {"HOGI_CD" : "CG6", "HOGI_NM" :  "CG6"}, {"HOGI_CD" : "CS3", "HOGI_NM" :  "CS3"}]}, 
+	{"powerPlantCode" : "8807", "powerPlantName" : "세종열병합", "powerPlantUnits" : [{"HOGI_CD" : "CG1", "HOGI_NM" :  "CG1"}, {"HOGI_CD" : "CG2", "HOGI_NM" :  "CG2"}, {"HOGI_CD" : "CS1", "HOGI_NM" :  "CS1"}]}, 
+	{"powerPlantCode" : "881A", "powerPlantName" : "제주태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "881B", "powerPlantName" : "제주대태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}]}, 
+	{"powerPlantCode" : "883A", "powerPlantName" : "제주내연", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}, {"HOGI_CD" : "002", "HOGI_NM" : "2호기"}]}, 
+	{"powerPlantCode" : "886A", "powerPlantName" : "제주GT", "powerPlantUnits" : [{"HOGI_CD" : "CG3", "HOGI_NM" : "CG3"}]}, 
+	{"powerPlantCode" : "880", "powerPlantName" : "인천태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}]}, 
+	{"powerPlantCode" : "8995", "powerPlantName" : "서울태양광", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "1호기"}]}, 
+	{"powerPlantCode" : "9983", "powerPlantName" : "양양풍력", "powerPlantUnits" : [{"HOGI_CD" : "001", "HOGI_NM" : "#1~2호기"}]}
+]
+
 # TODO this list has 20 power plants
 # But Komipo has newer ones and I have older ones
 # the API is shit ... need to scrape the web page ??
@@ -54,28 +79,59 @@ from KR_DataAPIKey import idKey
 # list of power-plant units given the strOrgNo : https://www.komipo.co.kr/fr/kor/openApi/hokiList.json?StrOrgNo=88A1&apiKind=resultPlant
 
 
-KomipoPowerPlantsAndUnits = [
-	{"powerPlantCode" : "8414", "powerPlantName" : "서울화력", "powerPlantUnits" : [{"unitCode" : "004", "unitName" : "4호기"}, {"unitCode" : "005", "unitName" : "5호기"}]}, 
-	{"powerPlantCode" : "8421", "powerPlantName" : "인천기력", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "8561", "powerPlantName" : "제주기력", "powerPlantUnits" : [{"unitCode" : "002", "unitName" : "2호기"}, {"unitCode" : "003", "unitName" : "3호기"}]}, 
-	{"powerPlantCode" : "8571", "powerPlantName" : "서천화력", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "8573", "powerPlantName" : "서천태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "8575", "powerPlantName" : "여수엑스포태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}]}, 
-	{"powerPlantCode" : "85A1", "powerPlantName" : "보령기력", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}, {"unitCode" : "003", "unitName" : "3호기"}, {"unitCode" : "004", "unitName" : "4호기"}, {"unitCode" : "005", "unitName" : "5호기"}, {"unitCode" : "006", "unitName" : "6호기"}, {"unitCode" : "007", "unitName" : "7호기"}, {"unitCode" : "008", "unitName" : "8호기"}  ]}, 
-	{"powerPlantCode" : "85D1", "powerPlantName" : "보령소수력", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "850", "powerPlantName" : "보령태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "85F1", "powerPlantName" : "보령연료전지", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}]}, 
-	{"powerPlantCode" : "8691", "powerPlantName" : "보령복합", "powerPlantUnits" : [{"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CS1", "unitName" :  "CS1"}, {"unitCode" : "CG3", "unitName" :  "CG3"}, {"unitCode" : "CG4", "unitName" :  "CG4"}, {"unitCode" : "CS2", "unitName" :  "CS2"}, {"unitCode" : "CG5", "unitName" :  "CG5"}, {"unitCode" : "CG6", "unitName" :  "CG6"}, {"unitCode" : "CS3", "unitName" :  "CS3"}]}, 
-	{"powerPlantCode" : "8801", "powerPlantName" : "인천복합", "powerPlantUnits" : [{"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CG3", "unitName" :  "CG3"}, {"unitCode" : "CG4", "unitName" :  "CG4"}, {"unitCode" : "CS1", "unitName" :  "CS1"}, {"unitCode" : "CS2", "unitName" :  "CS2"}, {"unitCode" : "CG5", "unitName" :  "CG5"}, {"unitCode" : "CG6", "unitName" :  "CG6"}, {"unitCode" : "CS3", "unitName" :  "CS3"}]}, 
-	{"powerPlantCode" : "8807", "powerPlantName" : "세종열병합", "powerPlantUnits" : [{"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CS1", "unitName" :  "CS1"}]}, 
-	{"powerPlantCode" : "881A", "powerPlantName" : "제주태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "881B", "powerPlantName" : "제주대태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}]}, 
-	{"powerPlantCode" : "883A", "powerPlantName" : "제주내연", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}, {"unitCode" : "002", "unitName" : "2호기"}]}, 
-	{"powerPlantCode" : "886A", "powerPlantName" : "제주GT", "powerPlantUnits" : [{"unitCode" : "CG3", "unitName" : "CG3"}]}, 
-	{"powerPlantCode" : "880", "powerPlantName" : "인천태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}]}, 
-	{"powerPlantCode" : "8995", "powerPlantName" : "서울태양광", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "1호기"}]}, 
-	{"powerPlantCode" : "9983", "powerPlantName" : "양양풍력", "powerPlantUnits" : [{"unitCode" : "001", "unitName" : "#1~2호기"}]}
+
+
+apiViewListUrl = 'https://www.komipo.co.kr/fr/kor/openApi/view.do'
+apiViewListQueryParams = {
+    'apiSeq' : '4',
+    'schTabCd' : 'tab1'
+}
+r = requests.post(apiViewListUrl, data=apiViewListQueryParams)
+
+# hard-coded list of plants (TODO parse the request above)
+
+KomipoPowerPlantsAndUnitsV2 = [
+	{"powerPlantCode" : "88A1", "powerPlantName" : "매봉산풍력"},
+	{"powerPlantCode" : "85A1", "powerPlantName" : "보령기력"},
+	{"powerPlantCode" : "8691", "powerPlantName" : "보령복합"},
+	{"powerPlantCode" : "85D1", "powerPlantName" : "보령소수력"},
+	{"powerPlantCode" : "85F1", "powerPlantName" : "보령연료전지"},
+	{"powerPlantCode" : "85E1", "powerPlantName" : "보령태양광"},
+	{"powerPlantCode" : "881D", "powerPlantName" : "상명풍력"},
+	{"powerPlantCode" : "8995", "powerPlantName" : "서울태양광"},
+	{"powerPlantCode" : "8414", "powerPlantName" : "서울화력"},
+	{"powerPlantCode" : "8573", "powerPlantName" : "서천태양광"},
+	{"powerPlantCode" : "8571", "powerPlantName" : "서천화력"},
+	{"powerPlantCode" : "8807", "powerPlantName" : "세종천연가스"},
+	{"powerPlantCode" : "A101", "powerPlantName" : "신보령기력"},
+	{"powerPlantCode" : "A811", "powerPlantName" : "신보령소수력"},
+	{"powerPlantCode" : "A801", "powerPlantName" : "신보령태양광"},
+	{"powerPlantCode" : "9983", "powerPlantName" : "양양풍력"},
+	{"powerPlantCode" : "8575", "powerPlantName" : "여수엑스포태양광"},
+	{"powerPlantCode" : "4802", "powerPlantName" : "원주그린열병합"},
+	{"powerPlantCode" : "8421", "powerPlantName" : "인천기력"},
+	{"powerPlantCode" : "8801", "powerPlantName" : "인천복합"},
+	{"powerPlantCode" : "88E1", "powerPlantName" : "인천태양광"},
+	{"powerPlantCode" : "886A", "powerPlantName" : "제주GT"},
+	{"powerPlantCode" : "8561", "powerPlantName" : "제주기력"},
+	{"powerPlantCode" : "883A", "powerPlantName" : "제주내연"},
+	{"powerPlantCode" : "881B", "powerPlantName" : "제주대태양광"},
+	{"powerPlantCode" : "881A", "powerPlantName" : "제주태양광"}
 ]
+
+for powerPlant in KomipoPowerPlantsAndUnitsV2:
+	unitsListUrl = 'https://www.komipo.co.kr/fr/kor/openApi/hokiList.json'
+	unitsListQueryParams = {
+		'StrOrgNo' : powerPlant['powerPlantCode'],
+		'apiKind' : 'resultPlant'
+	}
+	r = requests.get(unitsListUrl, params=unitsListQueryParams)
+	# result is json
+	powerPlantUnitData = json.loads(r.content.decode('utf-8'))
+	unitList = powerPlantUnitData['strHokiList']
+	powerPlant['powerPlantUnits'] = powerPlantUnitData['strHokiList']
+
+KomipoPowerPlantsAndUnits = KomipoPowerPlantsAndUnitsV2
 
 url = 'https://www.komipo.co.kr/openapi/service/rest/resultPlant/getData'
 queryParams = { 
@@ -91,18 +147,23 @@ for powerPlant in KomipoPowerPlantsAndUnits:
 	# store 용량 (capacity)
 	queryParams['strOrgNo'] = powerPlant['powerPlantCode']
 	# request all units (the API returns a sub-total of selected units at the end)
-	queryParams['strHokiS'] = powerPlant['powerPlantUnits'][0]['unitCode']
-	queryParams['strHokiE'] = powerPlant['powerPlantUnits'][-1]['unitCode']
+	queryParams['strHokiS'] = powerPlant['powerPlantUnits'][0]['HOGI_CD']
+	queryParams['strHokiE'] = powerPlant['powerPlantUnits'][-1]['HOGI_CD']
 	r = requests.get(url, params=queryParams)
 	root = ET.fromstring(r.content)
 	# TODO : response -> header -> result code -> 00 ? then process else continue
 	# response -> body -> items -> last item
+	# TODO number of hours in a month
+	numberHours = 720
 	items = root.find('body').find('items').findall('item')
 	if len(items) > 0 and items[-1].find('hokinm').text == '소계':
 		powerPlant['capacity'] = items[-1].find('capacity').text
+		powerPlant['monthlyTotal'] = items[-1].find('qvodgen').text
+		powerPlant['monthlyAverage'] = float(items[-1].find('qvodgen').text) / numberHours
 	else:
 		powerPlant['capacity'] = 0
-	# print (powerPlant['powerPlantName'], '\t', powerPlant['capacity']) 
+		powerPlant['monthlyTotal'] = 0
+		powerPlant['monthlyAverage'] = 0
 
 
 url = 'https://www.komipo.co.kr/openapi/service/rest/fuelCon/getData'
@@ -121,15 +182,15 @@ fuelTypes = [
 	{'emName' : 'gas', 'komipoName' : 'fuel4'},
 	{'emName' : 'biomass', 'komipoName' : 'fuel5'},
 	{'emName' : 'biomass', 'komipoName' : 'fuel6'}
-];
+]
 
 
 for powerPlant in KomipoPowerPlantsAndUnits:
 	# store 용량 (capacity)
 	queryParams['strOrgNo'] = powerPlant['powerPlantCode']
 	# request all units (the API returns a sub-total of selected units at the end)
-	queryParams['strHokiS'] = powerPlant['powerPlantUnits'][0]['unitCode']
-	queryParams['strHokiE'] = powerPlant['powerPlantUnits'][-1]['unitCode']
+	queryParams['strHokiS'] = powerPlant['powerPlantUnits'][0]['HOGI_CD']
+	queryParams['strHokiE'] = powerPlant['powerPlantUnits'][-1]['HOGI_CD']
 	r = requests.get(url, params=queryParams)
 	root = ET.fromstring(r.content)
 	# TODO : response -> header -> result code -> 00 ? then process else continue
@@ -141,7 +202,7 @@ for powerPlant in KomipoPowerPlantsAndUnits:
 	else:
 		for fuel in fuelTypes:
 			powerPlant[fuel['emName']] = 0
-	print (powerPlant['powerPlantName'], '\t', powerPlant['capacity'], '\t', powerPlant['biomass']) 
+	print (powerPlant['powerPlantName'], '\t', powerPlant['capacity'], '\t', powerPlant['monthlyAverage']) 
 
 # r = requests.get(url, params=queryParams)
 # print (r.content)

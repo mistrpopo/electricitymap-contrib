@@ -18,3 +18,5 @@ mobileapp/*.zip
 
 ## Pycharm IDE
 .idea
+
+parsers/KR_DataAPIKey.py
