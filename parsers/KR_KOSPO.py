@@ -87,8 +87,8 @@ queryParams = {
     'ServiceKey' : idKey, 
     'numOfRows' : '10', 
     'pageNo' : '1', 
-    'strSdate' : '20200310', 
-    'strEdate' : '20200512' 
+    'strSdate' : '20140310', 
+    'strEdate' : '20140512' 
 }
 
 r = requests.get(url, params=queryParams)
