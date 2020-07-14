@@ -1,0 +1,22 @@
+[
+	{"powerPlantCode" : "8414", "powerPlantName" : "서울화력", "powerPlantUnits" : [ {"unitCode" : "4", "unitName" : "4호기"}, {"unitCode" : "5", "unitName" : "5호기"} ]}, 
+	{"powerPlantCode" : "8421", "powerPlantName" : "인천기력", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "8561", "powerPlantName" : "제주기력", "powerPlantUnits" : [ {"unitCode" : "2", "unitName" : "2호기"}, {"unitCode" : "3", "unitName" : "3호기"} ]}, 
+	{"powerPlantCode" : "8571", "powerPlantName" : "서천화력", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "8573", "powerPlantName" : "서천태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "8575", "powerPlantName" : "여수엑스포태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"} ]}, 
+	{"powerPlantCode" : "85A1", "powerPlantName" : "보령기력", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"}, {"unitCode" : "3", "unitName" : "3호기"}, {"unitCode" : "4", "unitName" : "4호기"}, {"unitCode" : "5", "unitName" : "5호기"}, {"unitCode" : "6", "unitName" : "6호기"}, {"unitCode" : "7", "unitName" : "7호기"}, {"unitCode" : "8", "unitName" : "8호기"}  ]}, 
+	{"powerPlantCode" : "85D1", "powerPlantName" : "보령소수력", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "850", "powerPlantName" : "보령태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "85F1", "powerPlantName" : "보령연료전지", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"} ]}, 
+	{"powerPlantCode" : "8691", "powerPlantName" : "보령복합", "powerPlantUnits" : [ {"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CS1", "unitName" :  "CS1"}, {"unitCode" : "CG3", "unitName" :  "CG3"}, {"unitCode" : "CG4", "unitName" :  "CG4"}, {"unitCode" : "CS2", "unitName" :  "CS2"}, {"unitCode" : "CG5", "unitName" :  "CG5"}, {"unitCode" : "CG6", "unitName" :  "CG6"}, {"unitCode" : "CS3", "unitName" :  "CS3"} ]}, 
+	{"powerPlantCode" : "8801", "powerPlantName" : "인천복합", "powerPlantUnits" : [ {"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CG3", "unitName" :  "CG3"}, {"unitCode" : "CG4", "unitName" :  "CG4"}, {"unitCode" : "CS1", "unitName" :  "CS1"}, {"unitCode" : "CS2", "unitName" :  "CS2"}, {"unitCode" : "CG5", "unitName" :  "CG5"}, {"unitCode" : "CG6", "unitName" :  "CG6"}, {"unitCode" : "CS3", "unitName" :  "CS3"} ]}, 
+	{"powerPlantCode" : "8807", "powerPlantName" : "세종열병합", "powerPlantUnits" : [ {"unitCode" : "CG1", "unitName" :  "CG1"}, {"unitCode" : "CG2", "unitName" :  "CG2"}, {"unitCode" : "CS1", "unitName" :  "CS1"} ]}, 
+	{"powerPlantCode" : "881A", "powerPlantName" : "제주태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "881B", "powerPlantName" : "제주대태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"} ]}, 
+	{"powerPlantCode" : "883A", "powerPlantName" : "제주내연", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"}, {"unitCode" : "2", "unitName" : "2호기"} ]}, 
+	{"powerPlantCode" : "886A", "powerPlantName" : "제주GT", "powerPlantUnits" : [ {"unitCode" : "CG3", "unitName" : "CG3"} ]}, 
+	{"powerPlantCode" : "880", "powerPlantName" : "인천태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"} ]}, 
+	{"powerPlantCode" : "8995", "powerPlantName" : "서울태양광", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "1호기"} ]}, 
+	{"powerPlantCode" : "9983", "powerPlantName" : "양양풍력", "powerPlantUnits" : [ {"unitCode" : "1", "unitName" : "#1~2호기"} ]}
+]

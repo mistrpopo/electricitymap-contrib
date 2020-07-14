@@ -34,13 +34,14 @@ from logging import getLogger
 # KR_KOSPO.PY
 # # API not working (returns 200 OK but blank)
 
-#     Korea East-West Power: operates the Dangjin and Honam Coal Fired Power Plants, and manages a total of 9,510 MW in installed capacity as of Dec. 2010.
+#     Korea East-West Power (EWP): operates the Dangjin and Honam Coal Fired Power Plants, and manages a total of 9,510 MW in installed capacity as of Dec. 2010.
 # KR_EWP.PY
 # API was failing for 2 days with message 가용한 세션이 존재하지 않습니다. (100/100)
 # Now working...
 # but no results after 201504 !!!
 
-
+# Korea Power Exchange (KPX) : lots of cool info, but couldn't find directly useful stuff (but might be good to compare all later)
+# # http://epsis.kpx.or.kr/epsisnew/selectEkpoBcpChart.do?menuId=030400
 
 
 LOAD_URL = 'http://kpx.or.kr/eng/index.do'
@@ -192,6 +193,7 @@ def fetch_load(session):
     load_tag = soup.find("div", {"class": "actual"})
     present_load = load_tag.find("dt", text=re.compile(r'Present Load'))
     value = present_load.find_next("dd").text.strip()
+
 
     # remove MW units
     num = value.split(" ")[0]
